@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react'
 
 function App() {
+  const [listData, setListData] = useState(['spaghetti','ice cream','sushi', 'bologna', 'cheese'])
+  const [letters, setLetters] = useState('')
+
+  let list = listData.filter((e,index) => {
+    return e.includes(letters)
+    })
+    .map((e, index) => {
+      return <p key={index}>{e}</p>
+    })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" onChange={e => setLetters(e.target.value)} />
+      {list}
     </div>
   );
 }
